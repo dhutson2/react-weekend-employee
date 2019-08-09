@@ -13,7 +13,7 @@ class Employee extends Component {
   }
 
   updateEmployee = e => {
-    this.setState({ [e.currentTarget.name]: [e.currentTarget.value] });
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   render() {
