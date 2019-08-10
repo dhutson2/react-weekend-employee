@@ -78,11 +78,41 @@ class Employees extends Component {
     }
   };
 
+  deleteEmployee = async (employee, e) => {
+    e.preventDefault();
+    try {
+      const deleteRequest = await fetch(
+        "http://localhost:9000/api/v1/employee/" + employee._id,
+        {
+          method: "Delete",
+          credentials: "include"
+        }
+      );
+      if (deleteRequest.status !== 200) {
+        throw Error("editRequest not working");
+      }
+      const employeeToDelete = employee;
+      // filter will create a new array excluding items after !==
+      const filteredEmployees = this.state.employees.filter(
+        employee => employee !== employeeToDelete
+      );
+      this.setState({
+        employees: filteredEmployees
+      });
+    } catch (err) {
+      console.log(err, "error delete");
+      return err;
+    }
+  };
+
   render() {
     return (
       <div>
         <CreateEmployee addEmployee={this.addEmployee} />
-        <EmployeeList employeeList={this.state.employees} />
+        <EmployeeList
+          employeeList={this.state.employees}
+          deleteEmployee={this.deleteEmployee}
+        />
       </div>
     );
   }
