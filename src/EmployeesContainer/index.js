@@ -10,7 +10,7 @@ class Employees extends Component {
     super();
     this.state = {
       employees: [],
-      showModal: false,
+      showEditModal: false,
       employeeToEdit: {
         id: null,
         name: "",
@@ -109,38 +109,6 @@ class Employees extends Component {
   };
 
 
-      getEmployees = async () => {
-
-    try {
-
-      const responseGetEmployees = await fetch('http://localhost:9000/api/v1/employee', {
-        credentials: 'include',
-        method: 'GET'
-      });
-
-      console.log(responseGetEmployees, ' responseGetEmployees')
-
-      if(responseGetEmployees.status !== 200){
-        throw Error('404 from server');
-      }
-
-    
-      const employeesResponse = await responseGetEmployees.json();
-      
-      console.log(employeesResponse, ' employeesResponse <')
-
-      this.setState({
-        employees: [...employeesResponse.data]
-      });
-
-
-    } catch(err){
-      console.log(err, ' getEmployees errors');
-      return err
-    }
-
-
-  }
     handleFormChange = (e) => {
 
     this.setState({
@@ -149,7 +117,7 @@ class Employees extends Component {
         [e.target.name]: e.target.value
       }
     })
-  }
+  };
 
   showModal = (employee) => {
     console.log(employee, ' employeeID in show Modal')
@@ -157,7 +125,7 @@ class Employees extends Component {
       employeeToEdit: employee,
       showEditModal: !this.state.showEditModal
     })
-  }
+  };
 
   closeAndEdit = async (e) => {
     e.preventDefault();
@@ -209,7 +177,9 @@ class Employees extends Component {
         <EmployeeList
           employeeList={this.state.employees}
           deleteEmployee={this.deleteEmployee}
-        />
+          showModal={this.showModal} />
+
+        {this.state.showEditModal ? <EditEmployee closeAndEdit={this.closeAndEdit} employeeToEdit={this.state.employeeToEdit} handleFormChange={this.handleFormChange}/> : null}
       </div>
     );
   }

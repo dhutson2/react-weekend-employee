@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button, Label} from 'semantic-ui-react';
 
-const EditMovie = (props) =>  {
+const EditEmployee = (props) =>  {
 
   return (
     <div>
@@ -25,7 +25,7 @@ const EditMovie = (props) =>  {
         </Label><br/>
         <Label>
           Edit Annual Salary:
-          <Form.Input type="text" name="annualSalary" onChange={props.handleFormChange} value={props.movieToEdit.annualSalary}/>
+          <Form.Input type="text" name="annualSalary" onChange={props.handleFormChange} value={props.employeeToEdit.annualSalary}/>
         </Label><br/>
         <Button type='Submit'>Edit</Button>
       </Form>
