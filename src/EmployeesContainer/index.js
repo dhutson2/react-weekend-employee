@@ -8,7 +8,7 @@ class Employees extends Component {
     super();
     this.state = {
       employees: [],
-      showModal: false,
+      showEditModal: false,
       employeeToEdit: {
         id: null,
         name: "",
@@ -150,13 +150,17 @@ class Employees extends Component {
     }
   };
 
+
   handleFormChange = e => {
+
     this.setState({
       employeeToEdit: {
         ...this.state.employeeToEdit,
         [e.target.name]: e.target.value
       }
+
     });
+
   };
 
   showModal = employee => {
@@ -164,7 +168,9 @@ class Employees extends Component {
     this.setState({
       employeeToEdit: employee,
       showEditModal: !this.state.showEditModal
+
     });
+
   };
 
   closeAndEdit = async e => {
@@ -217,7 +223,9 @@ class Employees extends Component {
         <EmployeeList
           employeeList={this.state.employees}
           deleteEmployee={this.deleteEmployee}
-        />
+          showModal={this.showModal} />
+
+        {this.state.showEditModal ? <EditEmployee closeAndEdit={this.closeAndEdit} employeeToEdit={this.state.employeeToEdit} handleFormChange={this.handleFormChange}/> : null}
       </div>
     );
   }

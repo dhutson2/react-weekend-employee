@@ -4,6 +4,7 @@ const Employees = props => {
   console.log(props, " props in employee list");
   const employeeList = props.employeeList.map(employee => {
     return (
+
       <ul key={employee._id}>
         <li>
           <strong>{employee.name}</strong>
@@ -18,6 +19,7 @@ const Employees = props => {
         </button>
         <button>Edit</button>
       </ul>
+
     );
   });
   return (

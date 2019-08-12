@@ -40,7 +40,7 @@ class Employee extends Component {
         <label htmlFor="">
           Birthday:
           <input
-            type="text"
+            type="date"
             name="birthDate"
             onChange={this.updateEmployee}
             value={this.state.birthDate}
