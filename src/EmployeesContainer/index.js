@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import CreateEmployee from "../CreateEmployee";
-import EmployeeList from "../EmployeeList";
-import EditEmployee from "../EditEmployee";
+import CreateEmployee from "../CreateEmployee/index";
+import EmployeeList from "../EmployeeList/index";
+import EditEmployee from "../EditEmployee/index";
 
 class Employees extends Component {
   constructor() {
@@ -150,17 +150,13 @@ class Employees extends Component {
     }
   };
 
-
   handleFormChange = e => {
-
     this.setState({
       employeeToEdit: {
         ...this.state.employeeToEdit,
         [e.target.name]: e.target.value
       }
-
     });
-
   };
 
   showModal = employee => {
@@ -168,9 +164,7 @@ class Employees extends Component {
     this.setState({
       employeeToEdit: employee,
       showEditModal: !this.state.showEditModal
-
     });
-
   };
 
   closeAndEdit = async e => {
@@ -223,9 +217,16 @@ class Employees extends Component {
         <EmployeeList
           employeeList={this.state.employees}
           deleteEmployee={this.deleteEmployee}
-          showModal={this.showModal} />
+          showModal={this.showModal}
+        />
 
-        {this.state.showEditModal ? <EditEmployee closeAndEdit={this.closeAndEdit} employeeToEdit={this.state.employeeToEdit} handleFormChange={this.handleFormChange}/> : null}
+        {this.state.showEditModal ? (
+          <EditEmployee
+            closeAndEdit={this.closeAndEdit}
+            employeeToEdit={this.state.employeeToEdit}
+            handleFormChange={this.handleFormChange}
+          />
+        ) : null}
       </div>
     );
   }
