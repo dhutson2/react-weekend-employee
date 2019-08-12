@@ -24,9 +24,13 @@ const Employees = props => {
         >
           Delete
         </button>
-        <button class="ui secondary button" onClick={props.showModal.bind(null, employee)}>Edit</button>
-      </ul>
-
+        <button
+          class="ui secondary button"
+          onClick={props.showModal.bind(null, employee)}
+        >
+          Edit
+        </button>
+      </List>
     );
   });
   return (
