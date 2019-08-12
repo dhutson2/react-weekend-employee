@@ -21,35 +21,64 @@ class Employees extends Component {
   }
 
 
+      getEmployees = async () => {
 
+    try {
+
+      const responseGetEmployees = await fetch('http://localhost:9000/api/v1/employee', {
+        credentials: 'include',
+        method: 'GET'
+      });
+
+      console.log(responseGetEmployees, ' responseGetEmployees')
+
+      if(responseGetEmployees.status !== 200){
+        throw Error('404 from server');
+      }
+
+    
+      const employeesResponse = await responseGetEmployees.json();
+      
+      console.log(employeesResponse, ' employeesResponse <')
+
+      this.setState({
+        employees: [...employeesResponse.data]
+      });
+
+
+    } catch(err){
+      console.log(err, ' getEmployees errors');
+      return err
+    }
+
+
+  }
     handleFormChange = (e) => {
 
     this.setState({
-      movieToEdit: {
-        ...this.state.movieToEdit, // spread the previous contents of
-        // the object in the movie to edit
-        // then use the computational properties to edit
-        // the input you're typing in
+      employeeToEdit: {
+        ...this.state.employeeToEdit,
         [e.target.name]: e.target.value
       }
     })
-
   }
-  showModal = (movie) => {
-    console.log(movie, ' movieID in show Modal')
+
+  showModal = (employee) => {
+    console.log(employee, ' employeeID in show Modal')
     this.setState({
-      movieToEdit: movie,
+      employeeToEdit: employee,
       showEditModal: !this.state.showEditModal
     })
   }
+
   closeAndEdit = async (e) => {
     e.preventDefault();
 
     try {
-      const editRequest = await fetch('http://localhost:9000/api/v1/movies/' + this.state.movieToEdit._id, {
+      const editRequest = await fetch('http://localhost:9000/api/v1/employee/' + this.state.employeeToEdit._id, {
         method: 'PUT',
         credentials: 'include',
-        body: JSON.stringify(this.state.movieToEdit),
+        body: JSON.stringify(this.state.employeeToEdit),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -61,21 +90,18 @@ class Employees extends Component {
 
       const editResponse = await editRequest.json();
 
-      const editedMovieArray = this.state.movies.map((movie) => {
-        // remember map creates a brand new array
-        if(movie._id === editResponse.data._id){
-        // comparing every movie in the array, the
-        // movie we edited
-        // and if they match update the movie with response
-        // data from the api
-          movie = editResponse.data
+      const editedEmployeeArray = this.state.employees.map((employee) => {
+        
+        if(employee._id === editResponse.data._id){
+       
+          employee = editResponse.data
         }
 
-        return movie
+        return employee
       });
 
       this.setState({
-        movies: editedMovieArray,
+        employees: editedEmployeeArray,
         showEditModal: false
       })
 
