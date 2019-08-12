@@ -52,7 +52,7 @@ const EditEmployee = props => {
             type="text"
             name="annualSalary"
             onChange={props.handleFormChange}
-            value={props.movieToEdit.annualSalary}
+            value={props.employeeToEdit.annualSalary}
           />
         </Label>
         <br />

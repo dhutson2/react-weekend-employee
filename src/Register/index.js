@@ -30,9 +30,10 @@ class Register extends Component {
 
     console.log(parsedRegister, " response from register");
 
-    if (parsedRegister.status.message === "User Logged In") {
-      console.log("logged in");
-      // programmatically switch between a route
+
+    if(parsedRegister.status.message === 'User Logged In'){
+      console.log('logged in')
+
 
       this.props.history.push("/employees");
     }
