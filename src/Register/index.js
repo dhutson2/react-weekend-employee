@@ -40,11 +40,11 @@ class Register extends Component {
     return (
      <form onSubmit={this.handleSubmit}>
       <label>
-        Username:
+        Create Username:
         <input type="text" name='username' onChange={this.handleChange}/>
       </label>
       <label>
-        Password:
+        Create Password:
         <input type="password" name='password' onChange={this.handleChange}/>
       </label>
       <button type='Submit'>
