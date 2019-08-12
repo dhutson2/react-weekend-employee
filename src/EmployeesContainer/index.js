@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CreateEmployee from "../CreateEmployee";
 import EmployeeList from "../EmployeeList";
+import EditEmployee from "../EditEmployee";
 
 class Employees extends Component {
   constructor() {
@@ -47,6 +48,50 @@ class Employees extends Component {
       });
     } catch (err) {
       console.log(err, "add employee error");
+      return err;
+    }
+  };
+
+  handleFormChange = e => {
+    this.setState({
+      employeeToEdit: {
+        ...this.state.employeeToEdit,
+        [e.currentTarget.name]: e.currentTarget.value
+      }
+    });
+  };
+
+  closeAndEdit = async e => {
+    e.preventDefault();
+    try {
+      const editRequest = await fetch(
+        "http://localhost:9000/api/v1/employee" + this.state.employeeToEdit._id,
+        {
+          method: "PUT",
+          credentials: "include",
+          body: JSON.stringify(this.state.employeeToEdit),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      if (editRequest.status !== 200) {
+        throw Error("editRequest not working");
+      }
+      const editResponse = await editRequest.json();
+      // map will create a new array
+      const editedEmployees = this.state.employees.map(employee => {
+        if (employee._id === editResponse.data._id) {
+          employee = editResponse.data;
+        }
+        return employee;
+      });
+      this.setState({
+        employees: editedEmployees,
+        showEditModal: false
+      });
+    } catch (err) {
+      console.log(err, "error close and edit");
       return err;
     }
   };

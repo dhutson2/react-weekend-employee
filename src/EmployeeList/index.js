@@ -1,26 +1,29 @@
 import React from "react";
 
 const Employees = props => {
-  console.log(props, " props in movie list");
+  console.log(props, " props in employee list");
   const employeeList = props.employeeList.map(employee => {
     return (
-      <li key={employee._id}>
-        <span>{employee.name}</span>&nbsp;
-        <span>{employee.position}</span>&nbsp;
-        <span>{employee.birthDate}</span>&nbsp;
-        <span>{employee.department}</span>&nbsp;
-        <span>{employee.annualSalary}</span>&nbsp;
+      <ul key={employee._id}>
+        <li>
+          <strong>{employee.name}</strong>
+        </li>
+        &nbsp;
+        <li>position: {employee.position}</li>&nbsp;
+        <li>birthday: {employee.birthDate}</li>&nbsp;
+        <li>department: {employee.department}</li>&nbsp;
+        <li>cashhhh: ${employee.annualSalary}</li>&nbsp;
         <button onClick={props.deleteEmployee.bind(null, employee)}>
           Delete
         </button>
         <button>Edit</button>
-      </li>
+      </ul>
     );
   });
   return (
     <div>
       <h3>Employees</h3>
-      <ul>{employeeList}</ul>
+      <div>{employeeList}</div>
     </div>
   );
 };
