@@ -17,7 +17,7 @@ const Employees = props => {
         <button onClick={props.deleteEmployee.bind(null, employee)}>
           Delete
         </button>
-        <button>Edit</button>
+        <button onClick={props.showModal.bind(null, employee)}>Edit</button>
       </ul>
 
     );
