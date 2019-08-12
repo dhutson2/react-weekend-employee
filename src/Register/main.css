@@ -1,0 +1,18 @@
+label {
+    color: rgb(46, 46, 146);
+    margin: 15px;
+}
+
+#button {
+    margin: 10px
+}
+
+#username {
+    margin: 15px;
+    width: 50vh
+}
+
+#password {
+    margin: 15px;
+    width: 50vh
+}
