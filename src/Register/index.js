@@ -39,7 +39,7 @@ class Register extends Component {
   };
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} id="main-form">
         <label>
           Create Username:
           <input

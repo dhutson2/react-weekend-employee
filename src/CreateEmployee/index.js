@@ -64,7 +64,9 @@ class Employee extends Component {
             value={this.state.annualSalary}
           />
         </label>
-        <button type="submit">Hire Employee</button>
+        <button class="ui primary button" type="submit">
+          Hire Employee
+        </button>
       </form>
     );
   }
