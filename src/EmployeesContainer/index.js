@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-
-import EditEmployee from "../EditEmployee";
 import CreateEmployee from "../CreateEmployee";
 import EmployeeList from "../EmployeeList";
-
+import EditEmployee from "../EditEmployee";
 
 class Employees extends Component {
   constructor() {
@@ -50,6 +48,50 @@ class Employees extends Component {
       });
     } catch (err) {
       console.log(err, "add employee error");
+      return err;
+    }
+  };
+
+  handleFormChange = e => {
+    this.setState({
+      employeeToEdit: {
+        ...this.state.employeeToEdit,
+        [e.currentTarget.name]: e.currentTarget.value
+      }
+    });
+  };
+
+  closeAndEdit = async e => {
+    e.preventDefault();
+    try {
+      const editRequest = await fetch(
+        "http://localhost:9000/api/v1/employee" + this.state.employeeToEdit._id,
+        {
+          method: "PUT",
+          credentials: "include",
+          body: JSON.stringify(this.state.employeeToEdit),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      if (editRequest.status !== 200) {
+        throw Error("editRequest not working");
+      }
+      const editResponse = await editRequest.json();
+      // map will create a new array
+      const editedEmployees = this.state.employees.map(employee => {
+        if (employee._id === editResponse.data._id) {
+          employee = editResponse.data;
+        }
+        return employee;
+      });
+      this.setState({
+        employees: editedEmployees,
+        showEditModal: false
+      });
+    } catch (err) {
+      console.log(err, "error close and edit");
       return err;
     }
   };
@@ -109,66 +151,70 @@ class Employees extends Component {
   };
 
 
-    handleFormChange = (e) => {
+  handleFormChange = e => {
 
     this.setState({
       employeeToEdit: {
         ...this.state.employeeToEdit,
         [e.target.name]: e.target.value
       }
-    })
+
+    });
+
   };
 
-  showModal = (employee) => {
-    console.log(employee, ' employeeID in show Modal')
+  showModal = employee => {
+    console.log(employee, " employeeID in show Modal");
     this.setState({
       employeeToEdit: employee,
       showEditModal: !this.state.showEditModal
-    })
+
+    });
+
   };
 
-  closeAndEdit = async (e) => {
+  closeAndEdit = async e => {
     e.preventDefault();
 
     try {
-      const editRequest = await fetch('http://localhost:9000/api/v1/employee/' + this.state.employeeToEdit._id, {
-        method: 'PUT',
-        credentials: 'include',
-        body: JSON.stringify(this.state.employeeToEdit),
-        headers: {
-          'Content-Type': 'application/json'
+      const editRequest = await fetch(
+        "http://localhost:9000/api/v1/employee/" +
+          this.state.employeeToEdit._id,
+        {
+          method: "PUT",
+          credentials: "include",
+          body: JSON.stringify(this.state.employeeToEdit),
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      })
+      );
 
-      if(editRequest.status !== 200){
-        throw Error('editResquest not working')
+      if (editRequest.status !== 200) {
+        throw Error("editResquest not working");
       }
 
       const editResponse = await editRequest.json();
 
-      const editedEmployeeArray = this.state.employees.map((employee) => {
-        
-        if(employee._id === editResponse.data._id){
-       
-          employee = editResponse.data
+      const editedEmployeeArray = this.state.employees.map(employee => {
+        if (employee._id === editResponse.data._id) {
+          employee = editResponse.data;
         }
 
-        return employee
+        return employee;
       });
 
       this.setState({
         employees: editedEmployeeArray,
         showEditModal: false
-      })
+      });
 
-      console.log(editResponse, ' editResponse');
-
-    } catch(err){
-      console.log(err, ' error closeAndEdit');
-      return err
+      console.log(editResponse, " editResponse");
+    } catch (err) {
+      console.log(err, " error closeAndEdit");
+      return err;
     }
-  }
-
+  };
 
   render() {
     return (
