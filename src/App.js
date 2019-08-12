@@ -4,6 +4,7 @@ import "./App.css";
 import Employees from "./EmployeesContainer";
 import { Route, Switch } from 'react-router-dom';
 import Register from './Register';
+import Login from './Login';
 
 import Header from './Header';
 
@@ -19,8 +20,9 @@ function App() {
     <main>
       <Header />
       <Switch>
-        <Route exact path='/' component={ Register } />
-        <Route exact path='/employees' component={ Employees } />
+        <Route exact path='/' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/employees' component={Employees} />
         <Route component={My404} />
       </Switch>
     </main>
