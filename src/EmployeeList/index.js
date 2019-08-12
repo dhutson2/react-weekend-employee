@@ -1,5 +1,5 @@
 import React from "react";
-import { List } from "semantic-ui-react";
+import { List, Button } from "semantic-ui-react";
 
 const Employees = props => {
   console.log(props, " props in employee list");
@@ -18,10 +18,13 @@ const Employees = props => {
         <br />
         <li>cashhhh: ${employee.annualSalary}</li>
         <br />
-        <button onClick={props.deleteEmployee.bind(null, employee)}>
+        <button
+          class="ui secondary button"
+          onClick={props.deleteEmployee.bind(null, employee)}
+        >
           Delete
         </button>
-        <button>Edit</button>
+        <button class="ui secondary button">Edit</button>
       </List>
     );
   });

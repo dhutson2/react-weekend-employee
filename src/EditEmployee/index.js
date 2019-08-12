@@ -1,9 +1,5 @@
-
-import React, { Component } from 'react';
-import {Form, Button, Label} from 'semantic-ui-react';
-
-
-
+import React from "react";
+import { Form, Button, Label } from "semantic-ui-react";
 
 const EditEmployee = props => {
   return (
@@ -52,7 +48,6 @@ const EditEmployee = props => {
         <br />
         <Label>
           Edit Annual Salary:
-
           <Form.Input
             type="text"
             name="annualSalary"
@@ -61,7 +56,9 @@ const EditEmployee = props => {
           />
         </Label>
         <br />
-        <Button type="Submit">Edit</Button>
+        <button class="ui secondary button" type="Submit">
+          Edit
+        </button>
       </Form>
     </div>
   );

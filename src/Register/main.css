@@ -3,16 +3,24 @@ label {
     margin: 15px;
 }
 
+#main-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px
+}
+
 #button {
-    margin: 10px
+    margin: 10px;
+    width: 100px
 }
 
 #username {
     margin: 15px;
-    width: 50vh
+    width: 40vh;
 }
 
 #password {
     margin: 15px;
-    width: 50vh
+    width: 40vh
 }
