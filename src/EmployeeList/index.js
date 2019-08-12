@@ -5,11 +5,11 @@ const Employees = props => {
   const employeeList = props.employeeList.map(employee => {
     return (
       <li key={employee._id}>
-        <span>{employee.name}</span>&nbsp;
-        <span>{employee.position}</span>&nbsp;
-        <span>{employee.birthDate}</span>&nbsp;
-        <span>{employee.department}</span>&nbsp;
-        <span>{employee.annualSalary}</span>&nbsp;
+        <span>Name: {employee.name}</span>&nbsp;
+        <span>position: {employee.position}</span>&nbsp;
+        <span>Birth Date: {employee.birthDate}</span>&nbsp;
+        <span>Department: {employee.department}</span>&nbsp;
+        <span>Annual Salary: {employee.annualSalary}</span>&nbsp;
         <button onClick={props.deleteEmployee.bind(null, employee)}>
           Delete
         </button>
