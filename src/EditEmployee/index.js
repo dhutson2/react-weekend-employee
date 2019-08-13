@@ -1,11 +1,12 @@
 import React from "react";
 import { Form, Button, Label } from "semantic-ui-react";
+import "./main.css";
 
 const EditEmployee = props => {
   return (
     <div>
-      <h3> Edit Employee</h3>
-      <Form onSubmit={props.closeAndEdit}>
+      <h3 id="header"> Edit Employee</h3>
+      <Form onSubmit={props.closeAndEdit} id="form">
         <Label>
           Edit Employee Name:
           <Form.Input
@@ -57,7 +58,7 @@ const EditEmployee = props => {
         </Label>
         <br />
         <button class="ui secondary button" type="Submit">
-          Edit
+          Confirm Changes
         </button>
       </Form>
     </div>

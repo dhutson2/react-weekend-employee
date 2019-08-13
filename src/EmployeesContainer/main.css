@@ -1,0 +1,6 @@
+#employees {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}

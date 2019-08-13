@@ -35,8 +35,10 @@ const Employees = props => {
   });
   return (
     <div>
-      <h3>Employees</h3>
-      <div class="ui container">{employeeList}</div>
+      <h3 id="header">Employees</h3>
+      <div class="ui container" id="employees">
+        {employeeList}
+      </div>
     </div>
   );
 };
