@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CreateEmployee from "../CreateEmployee/index";
 import EmployeeList from "../EmployeeList/index";
 import EditEmployee from "../EditEmployee/index";
+import "./main.css";
 
 class Employees extends Component {
   constructor() {
@@ -218,6 +219,7 @@ class Employees extends Component {
           employeeList={this.state.employees}
           deleteEmployee={this.deleteEmployee}
           showModal={this.showModal}
+          id="employees"
         />
 
         {this.state.showEditModal ? (
